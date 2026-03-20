@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Intervalio — Tu tiempo, tu ritmo</title>
-<meta name="description" content="Intervalio es la app de timers e intervalos para fitness, meditación y productividad. Pomodoro, Tabata, HIIT y mucho más.">
+<title>Intervalio — Your time, your rhythm</title>
+<meta name="description" content="Intervalio is the timer and interval app for fitness, meditation and productivity. Pomodoro, Tabata, HIIT and much more.">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
     --orange: #FF6B35;
     --orange-dark: #E55A25;
@@ -18,15 +17,10 @@
     --muted: #888888;
     --border: rgba(255,255,255,0.08);
   }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
+    background: var(--bg); color: var(--text); line-height: 1.6;
   }
-
-  /* NAV */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
     background: rgba(10,10,10,0.85);
@@ -36,246 +30,92 @@
     display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; }
-  .nav-logo img { width: 36px; height: 36px; border-radius: 8px; }
-  .nav-cta {
-    background: var(--orange); color: white;
-    padding: 10px 22px; border-radius: 50px;
-    text-decoration: none; font-weight: 600; font-size: 14px;
-    transition: background 0.2s;
-  }
+  .nav-logo-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .nav-cta { background: var(--orange); color: white; padding: 10px 22px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.2s; }
   .nav-cta:hover { background: var(--orange-dark); }
 
-  /* HERO */
   .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
+    min-height: 100vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    text-align: center;
-    padding: 120px 24px 80px;
+    text-align: center; padding: 120px 24px 80px;
     position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
     width: 800px; height: 800px; border-radius: 50%;
     background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
     pointer-events: none;
   }
   .badge {
-    display: inline-block;
-    background: rgba(255,107,53,0.15);
-    border: 1px solid rgba(255,107,53,0.3);
-    color: var(--orange);
+    display: inline-block; background: rgba(255,107,53,0.15);
+    border: 1px solid rgba(255,107,53,0.3); color: var(--orange);
     padding: 6px 16px; border-radius: 50px;
-    font-size: 13px; font-weight: 600;
-    margin-bottom: 28px; letter-spacing: 0.5px;
+    font-size: 13px; font-weight: 600; margin-bottom: 28px; letter-spacing: 0.5px;
   }
-  .hero h1 {
-    font-size: clamp(42px, 7vw, 88px);
-    font-weight: 800; line-height: 1.05;
-    letter-spacing: -2px;
-    max-width: 900px;
-    margin-bottom: 24px;
-  }
+  .hero h1 { font-size: clamp(42px, 7vw, 88px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; max-width: 900px; margin-bottom: 24px; }
   .hero h1 span { color: var(--orange); }
-  .hero p {
-    font-size: clamp(18px, 2.5vw, 22px);
-    color: var(--muted); max-width: 600px;
-    margin-bottom: 48px; line-height: 1.6;
-  }
+  .hero p { font-size: clamp(18px, 2.5vw, 22px); color: var(--muted); max-width: 600px; margin-bottom: 48px; line-height: 1.6; }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .btn-primary {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--orange); color: white;
-    padding: 16px 32px; border-radius: 50px;
-    text-decoration: none; font-weight: 700; font-size: 17px;
-    transition: transform 0.2s, background 0.2s;
-  }
+  .btn-primary { display: flex; align-items: center; gap: 10px; background: var(--orange); color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 17px; transition: transform 0.2s, background 0.2s; }
   .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); }
-  .btn-secondary {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--bg3); color: white;
-    border: 1px solid var(--border);
-    padding: 16px 32px; border-radius: 50px;
-    text-decoration: none; font-weight: 600; font-size: 17px;
-    transition: transform 0.2s, border-color 0.2s;
-  }
+  .btn-secondary { display: flex; align-items: center; gap: 10px; background: var(--bg3); color: white; border: 1px solid var(--border); padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 17px; transition: transform 0.2s, border-color 0.2s; }
   .btn-secondary:hover { border-color: var(--orange); transform: translateY(-2px); }
 
-  /* SOCIAL PROOF */
-  .proof {
-    text-align: center; padding: 20px 24px 80px;
-    color: var(--muted); font-size: 14px;
-  }
-  .proof-stats {
-    display: flex; justify-content: center; gap: 48px;
-    flex-wrap: wrap; margin-top: 48px;
-  }
+  .proof { text-align: center; padding: 20px 24px 80px; color: var(--muted); font-size: 14px; }
+  .proof-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 48px; }
   .stat { text-align: center; }
   .stat-num { font-size: 36px; font-weight: 800; color: white; }
   .stat-num span { color: var(--orange); }
   .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-  /* FEATURES */
   section { padding: 100px 24px; }
-  .section-label {
-    text-align: center; color: var(--orange);
-    font-size: 13px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    text-align: center; font-size: clamp(32px, 5vw, 52px);
-    font-weight: 800; line-height: 1.1;
-    letter-spacing: -1px; max-width: 700px;
-    margin: 0 auto 64px;
-  }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px; max-width: 1100px; margin: 0 auto;
-  }
-  .feature-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 20px; padding: 32px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
+  .section-label { text-align: center; color: var(--orange); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+  .section-title { text-align: center; font-size: clamp(32px, 5vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; max-width: 700px; margin: 0 auto 64px; }
+
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .feature-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: border-color 0.2s, transform 0.2s; }
   .feature-card:hover { border-color: rgba(255,107,53,0.4); transform: translateY(-4px); }
-  .feature-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    background: rgba(255,107,53,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; margin-bottom: 20px;
-  }
+  .feature-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(255,107,53,0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
   .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
   .feature-card p { color: var(--muted); font-size: 15px; line-height: 1.6; }
 
-  /* USE CASES */
   .use-cases { background: var(--bg2); }
-  .cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px; max-width: 1100px; margin: 0 auto;
-  }
-  .case-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 16px; padding: 28px 24px;
-    text-align: center;
-    transition: border-color 0.2s;
-  }
+  .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 1100px; margin: 0 auto; }
+  .case-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; text-align: center; transition: border-color 0.2s; }
   .case-card:hover { border-color: rgba(255,107,53,0.4); }
   .case-icon { font-size: 36px; margin-bottom: 14px; }
   .case-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
   .case-card p { color: var(--muted); font-size: 14px; }
 
-  /* TIMERS LIST */
   .timers-section { background: var(--bg); }
-  .timers-grid {
-    display: flex; flex-wrap: wrap; gap: 12px;
-    justify-content: center; max-width: 900px; margin: 0 auto;
-  }
-  .timer-pill {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 50px; padding: 10px 20px;
-    font-size: 15px; font-weight: 500;
-    transition: border-color 0.2s, color 0.2s;
-  }
+  .timers-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 900px; margin: 0 auto; }
+  .timer-pill { background: var(--bg3); border: 1px solid var(--border); border-radius: 50px; padding: 10px 20px; font-size: 15px; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
   .timer-pill:hover { border-color: var(--orange); color: var(--orange); }
 
-  /* SUGGESTION */
-  .suggestion-section {
-    background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(255,107,53,0.02) 100%);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .suggestion-inner {
-    max-width: 700px; margin: 0 auto; text-align: center;
-  }
-  .suggestion-inner h2 {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800; line-height: 1.1;
-    letter-spacing: -1px; margin-bottom: 20px;
-  }
+  .suggestion-section { background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(255,107,53,0.02) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .suggestion-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .suggestion-inner h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px; }
   .suggestion-inner h2 span { color: var(--orange); }
-  .suggestion-inner p {
-    color: var(--muted); font-size: 17px;
-    line-height: 1.6; margin-bottom: 40px;
-  }
-  .suggestion-box {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 20px; padding: 40px;
-    text-align: left;
-  }
-  .suggestion-box h3 {
-    font-size: 18px; font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .suggestion-box p {
-    color: var(--muted); font-size: 14px;
-    margin-bottom: 24px;
-  }
-  .suggestion-steps {
-    display: flex; flex-direction: column; gap: 16px;
-    margin-bottom: 32px;
-  }
-  .step {
-    display: flex; align-items: flex-start; gap: 14px;
-  }
-  .step-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--orange); color: white;
-    font-size: 13px; font-weight: 800;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 2px;
-  }
+  .suggestion-inner p { color: var(--muted); font-size: 17px; line-height: 1.6; margin-bottom: 40px; }
+  .suggestion-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 40px; text-align: left; }
+  .suggestion-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .suggestion-box p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .suggestion-steps { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .step { display: flex; align-items: flex-start; gap: 14px; }
+  .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--orange); color: white; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
   .step-text { font-size: 15px; color: var(--muted); line-height: 1.5; }
   .step-text strong { color: white; }
-  .email-btn {
-    display: block; text-align: center;
-    background: var(--orange); color: white;
-    padding: 16px 32px; border-radius: 50px;
-    text-decoration: none; font-weight: 700; font-size: 16px;
-    transition: background 0.2s, transform 0.2s;
-  }
+  .email-btn { display: block; text-align: center; background: var(--orange); color: white; padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 16px; transition: background 0.2s, transform 0.2s; }
   .email-btn:hover { background: var(--orange-dark); transform: translateY(-2px); }
 
-  /* CTA FINAL */
   .cta-section { text-align: center; padding: 120px 24px; }
-  .cta-section h2 {
-    font-size: clamp(36px, 6vw, 72px);
-    font-weight: 800; line-height: 1.05;
-    letter-spacing: -2px; margin-bottom: 20px;
-  }
+  .cta-section h2 { font-size: clamp(36px, 6vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 20px; }
   .cta-section h2 span { color: var(--orange); }
-  .cta-section p {
-    color: var(--muted); font-size: 18px;
-    margin-bottom: 48px;
-  }
+  .cta-section p { color: var(--muted); font-size: 18px; margin-bottom: 48px; }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 24px;
-    text-align: center; color: var(--muted);
-    font-size: 14px;
-  }
-  footer a { color: var(--muted); text-decoration: none; }
+  footer { border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; color: var(--muted); font-size: 14px; }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
   footer a:hover { color: var(--orange); }
-
-  /* APPSTORE BADGE */
-  .appstore-badge {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: white; color: black;
-    padding: 12px 24px; border-radius: 14px;
-    text-decoration: none; font-weight: 700;
-    transition: transform 0.2s, opacity 0.2s;
-  }
-  .appstore-badge:hover { transform: translateY(-2px); opacity: 0.9; }
-  .appstore-badge svg { width: 24px; height: 24px; }
 
   @media (max-width: 600px) {
     nav { padding: 14px 20px; }
@@ -287,131 +127,96 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#1a1a1a,#333);display:flex;align-items:center;justify-content:center;font-size:20px;">⏱</div>
+    <div class="nav-logo-icon">⏱</div>
     Intervalio
   </div>
-  <a href="https://apps.apple.com" class="nav-cta">Descargar gratis</a>
+  <a href="https://apps.apple.com" class="nav-cta">Download free</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="badge">⚡ Disponible en App Store — Gratis</div>
-  <h1>Domina tu tiempo.<br>Alcanza tu <span>máximo nivel.</span></h1>
-  <p>La app que convierte cada segundo en una ventaja competitiva. Para atletas, profesionales y cualquiera que quiera rendir más.</p>
+  <div class="badge">⚡ Available on App Store — Free</div>
+  <h1>Master your time.<br>Reach your <span>peak level.</span></h1>
+  <p>The app that turns every second into a competitive advantage. For athletes, professionals and anyone who wants to perform at their best.</p>
   <div class="hero-actions">
     <a href="https://apps.apple.com" class="btn-primary">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Descargar en App Store
+      Download on the App Store
     </a>
-    <a href="#sugerencias" class="btn-secondary">
-      💡 Proponer mejora
-    </a>
+    <a href="#suggestions" class="btn-secondary">💡 Suggest a feature</a>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="proof">
   <div class="proof-stats">
-    <div class="stat">
-      <div class="stat-num">20<span>+</span></div>
-      <div class="stat-label">Timers preconfigurados</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">10<span>+</span></div>
-      <div class="stat-label">Rutinas de intervalos</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">4<span>+</span></div>
-      <div class="stat-label">Rating App Store</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100<span>%</span></div>
-      <div class="stat-label">Gratis para empezar</div>
-    </div>
+    <div class="stat"><div class="stat-num">20<span>+</span></div><div class="stat-label">Preset timers</div></div>
+    <div class="stat"><div class="stat-num">10<span>+</span></div><div class="stat-label">Interval routines</div></div>
+    <div class="stat"><div class="stat-num">4<span>+</span></div><div class="stat-label">App Store rating</div></div>
+    <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Free to start</div></div>
   </div>
 </div>
 
 <!-- FEATURES -->
 <section>
-  <p class="section-label">Por qué Intervalio</p>
-  <h2 class="section-title">Diseñado para los que no desperdician ni un segundo</h2>
+  <p class="section-label">Why Intervalio</p>
+  <h2 class="section-title">Built for people who don't waste a single second</h2>
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">⚡</div>
-      <h3>Listo en un tap</h3>
-      <p>Elige tu timer y empieza. Sin configuraciones complicadas. Pomodoro, Tabata, Power Nap — todo a un toque de distancia.</p>
+      <h3>Ready in one tap</h3>
+      <p>Pick your timer and go. No complicated setup. Pomodoro, Tabata, Power Nap — everything just one tap away.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🎯</div>
-      <h3>Totalmente personalizable</h3>
-      <p>Crea tus propios timers e intervalos con tus tiempos exactos. Guárdalos y úsalos cuando quieras.</p>
+      <h3>Fully customizable</h3>
+      <p>Create your own timers and intervals with your exact timing. Save them and use them whenever you want.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔄</div>
-      <h3>Intervalos inteligentes</h3>
-      <p>Configura rondas de trabajo y descanso con precisión al segundo. Ideal para HIIT, CrossFit, EMOM y mucho más.</p>
+      <h3>Smart intervals</h3>
+      <p>Set work and rest rounds with second-level precision. Perfect for HIIT, CrossFit, EMOM and much more.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🌙</div>
-      <h3>Diseño inmersivo</h3>
-      <p>Interfaz oscura, elegante y sin distracciones. El timer ocupa todo el protagonismo para que tú te concentres en rendir.</p>
+      <h3>Immersive design</h3>
+      <p>Dark, elegant, distraction-free interface. The timer takes center stage so you can focus on performing.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🚫</div>
-      <h3>Sin anuncios con un toque</h3>
-      <p>Elimina los anuncios de por vida con un único pago. Sin suscripciones, sin sorpresas.</p>
+      <h3>Ad-free with one tap</h3>
+      <p>Remove ads for life with a single purchase. No subscriptions, no surprises. Yours forever.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔔</div>
-      <h3>Siempre evolucionando</h3>
-      <p>Escuchamos a nuestra comunidad y añadimos nuevas funciones con cada actualización. Tu opinión construye la app.</p>
+      <h3>Always evolving</h3>
+      <p>We listen to our community and add new features with every update. Your feedback shapes the app.</p>
     </div>
   </div>
 </section>
 
 <!-- USE CASES -->
 <section class="use-cases">
-  <p class="section-label">Para quién es</p>
-  <h2 class="section-title">Una app, mil usos</h2>
+  <p class="section-label">Who it's for</p>
+  <h2 class="section-title">One app, a thousand uses</h2>
   <div class="cases-grid">
-    <div class="case-card">
-      <div class="case-icon">🏋️</div>
-      <h3>Atletas</h3>
-      <p>Tabata, HIIT, CrossFit, Gym Rest. Entrena con precisión militar.</p>
-    </div>
-    <div class="case-card">
-      <div class="case-icon">💻</div>
-      <h3>Profesionales</h3>
-      <p>Pomodoro y técnicas de deep work para máxima productividad.</p>
-    </div>
-    <div class="case-card">
-      <div class="case-icon">🧘</div>
-      <h3>Meditación</h3>
-      <p>Sesiones de mindfulness, breathing y yoga con el tiempo perfecto.</p>
-    </div>
-    <div class="case-card">
-      <div class="case-icon">🍳</div>
-      <h3>En casa</h3>
-      <p>Cocina, descansos, stretching. El timer ideal para cada momento.</p>
-    </div>
-    <div class="case-card">
-      <div class="case-icon">🏃</div>
-      <h3>Runners</h3>
-      <p>Intervalos de carrera configurados a tu ritmo y nivel.</p>
-    </div>
+    <div class="case-card"><div class="case-icon">🏋️</div><h3>Athletes</h3><p>Tabata, HIIT, CrossFit, Gym Rest. Train with military precision.</p></div>
+    <div class="case-card"><div class="case-icon">💻</div><h3>Professionals</h3><p>Pomodoro and deep work techniques for maximum productivity.</p></div>
+    <div class="case-card"><div class="case-icon">🧘</div><h3>Meditation</h3><p>Mindfulness, breathing and yoga sessions with perfect timing.</p></div>
+    <div class="case-card"><div class="case-icon">🍳</div><h3>At home</h3><p>Cooking, breaks, stretching. The ideal timer for every moment.</p></div>
+    <div class="case-card"><div class="case-icon">🏃</div><h3>Runners</h3><p>Running intervals configured to your pace and level.</p></div>
   </div>
 </section>
 
 <!-- TIMERS -->
 <section class="timers-section">
-  <p class="section-label">Incluidos en la app</p>
-  <h2 class="section-title">Todo lo que necesitas, ya configurado</h2>
+  <p class="section-label">Included in the app</p>
+  <h2 class="section-title">Everything you need, already set up</h2>
   <div class="timers-grid">
     <div class="timer-pill">⏱ Pomodoro</div>
-    <div class="timer-pill">🧘 Meditación</div>
+    <div class="timer-pill">🧘 Meditation</div>
     <div class="timer-pill">🧘 Yoga</div>
     <div class="timer-pill">😴 Power Nap</div>
     <div class="timer-pill">🍳 Cooking</div>
@@ -428,61 +233,57 @@
     <div class="timer-pill">♾️ AMRAP</div>
     <div class="timer-pill">🧠 Mindfulness</div>
     <div class="timer-pill">💪 Strength</div>
-    <div class="timer-pill">➕ Tu propio timer</div>
+    <div class="timer-pill">➕ Your own timer</div>
   </div>
 </section>
 
-<!-- SUGERENCIAS -->
-<section class="suggestion-section" id="sugerencias">
+<!-- SUGGESTIONS -->
+<section class="suggestion-section" id="suggestions">
   <div class="suggestion-inner">
-    <p class="section-label">Comunidad</p>
-    <h2>Tú decides cómo <span>mejora</span> Intervalio</h2>
-    <p>Intervalio crece gracias a sus usuarios. Si tienes una idea, un timer que eches en falta o una mejora que haría tu vida más fácil, queremos saberlo. Leemos cada mensaje y las mejores ideas se convierten en actualizaciones reales.</p>
-
+    <p class="section-label">Community</p>
+    <h2>You decide how Intervalio <span>improves</span></h2>
+    <p>Intervalio grows thanks to its users. If you have an idea, a timer you're missing, or an improvement that would make your life easier — we want to hear it. We read every message and the best ideas become real updates.</p>
     <div class="suggestion-box">
-      <h3>💡 Propón tu mejora</h3>
-      <p>Cuéntanos qué te gustaría ver en la próxima versión. Sin formularios complicados — solo un email.</p>
-
+      <h3>💡 Suggest an improvement</h3>
+      <p>Tell us what you'd like to see in the next version. No complicated forms — just an email.</p>
       <div class="suggestion-steps">
         <div class="step">
           <div class="step-num">1</div>
-          <div class="step-text"><strong>Describe tu idea</strong> — un nuevo timer, un tipo de intervalo, una función que te facilitaría la vida...</div>
+          <div class="step-text"><strong>Describe your idea</strong> — a new timer, an interval type, a feature that would make your life easier...</div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <div class="step-text"><strong>Envíanosla por email</strong> — te responderemos personalmente en menos de 48 horas.</div>
+          <div class="step-text"><strong>Send it by email</strong> — we'll reply personally within 48 hours.</div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <div class="step-text"><strong>Si la implementamos</strong>, te avisamos cuando esté disponible en la actualización. ¡Tu nombre en los créditos si quieres!</div>
+          <div class="step-text"><strong>If we implement it</strong>, we'll let you know when it's live in the update. Your name in the credits if you'd like!</div>
         </div>
       </div>
-
-      <a href="mailto:intervalio.ios@gmail.com?subject=Sugerencia%20para%20Intervalio&body=Hola%2C%20me%20gustar%C3%ADa%20proponer%20la%20siguiente%20mejora%20para%20Intervalio%3A%0A%0A" class="email-btn">
-        ✉️ Enviar mi sugerencia
+      <a href="mailto:intervalio.ios@gmail.com?subject=Feature%20suggestion%20for%20Intervalio&body=Hi%2C%20I%27d%20like%20to%20suggest%20the%20following%20improvement%20for%20Intervalio%3A%0A%0A" class="email-btn">
+        ✉️ Send my suggestion
       </a>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
+<!-- CTA -->
 <section class="cta-section">
-  <h2>Tu próxima sesión,<br><span>mejor que nunca.</span></h2>
-  <p>Descarga Intervalio gratis y empieza hoy.</p>
+  <h2>Your next session,<br><span>better than ever.</span></h2>
+  <p>Download Intervalio for free and start today.</p>
   <a href="https://apps.apple.com" class="btn-primary" style="display:inline-flex; font-size:18px; padding:18px 40px;">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-    Descargar gratis en App Store
+    Download free on the App Store
   </a>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p style="margin-bottom:16px;">
-    <a href="https://albdimanuel-source.github.io/intervalio-privacy/">Política de privacidad</a>
+    <a href="./privacy-policy.html">Privacy Policy</a>
     &nbsp;·&nbsp;
-    <a href="https://albdimanuel-source.github.io/intervalio-privacy/support.html">Soporte</a>
+    <a href="./support.html">Support</a>
     &nbsp;·&nbsp;
-    <a href="mailto:alberto@dimanuel.com?subject=Sugerencia%20para%20Intervalio">Contacto</a>
+    <a href="mailto:intervalio.ios@gmail.com?subject=Suggestion%20for%20Intervalio">Contact</a>
   </p>
   <p>© 2026 Alberto Dimanuel · Intervalio</p>
 </footer>
