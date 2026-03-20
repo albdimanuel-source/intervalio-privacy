@@ -1,76 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy – Intervalio</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 24px; color: #333; line-height: 1.7; }
-        h1 { color: #0D1B2A; border-bottom: 3px solid #E8593C; padding-bottom: 12px; }
-        h2 { color: #0D1B2A; margin-top: 32px; }
-        a { color: #E8593C; }
-        .updated { color: #888; font-size: 14px; }
-        .highlight { background: #f8f9fa; border-left: 4px solid #E8593C; padding: 12px 16px; border-radius: 4px; margin: 16px 0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – Intervalio</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --orange: #FF6B35;
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --text: #ffffff;
+    --muted: #888888;
+    --muted2: #bbbbbb;
+    --border: rgba(255,255,255,0.08);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; text-decoration: none; color: white; }
+  .nav-logo-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .nav-back { color: var(--muted); font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--orange); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 24px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(255,107,53,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,107,53,0.12);
+    border: 1px solid rgba(255,107,53,0.25);
+    color: var(--orange);
+    padding: 5px 14px; border-radius: 50px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero p { color: var(--muted); font-size: 16px; }
+
+  /* LAYOUT */
+  .container { max-width: 800px; margin: 0 auto; padding: 60px 24px 80px; }
+
+  /* TOC */
+  .toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .toc h3 { font-size: 13px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 8px; }
+  .toc a { color: var(--muted2); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+  .toc a:hover { color: var(--orange); }
+
+  /* SUMMARY BOX */
+  .summary-box {
+    background: rgba(255,107,53,0.06);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 16px; padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .summary-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--orange); }
+  .summary-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 12px; font-size: 15px; color: var(--muted2);
+  }
+  .summary-item:last-child { margin-bottom: 0; }
+  .check { color: var(--orange); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 48px; scroll-margin-top: 80px; }
+  .section-num {
+    display: inline-block;
+    background: rgba(255,107,53,0.12);
+    color: var(--orange);
+    font-size: 12px; font-weight: 800;
+    padding: 3px 10px; border-radius: 50px;
+    margin-bottom: 12px; letter-spacing: 0.5px;
+  }
+  .section h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px; }
+  .section p { color: var(--muted2); font-size: 15px; margin-bottom: 14px; line-height: 1.75; }
+  .section p:last-child { margin-bottom: 0; }
+  .section a { color: var(--orange); text-decoration: none; }
+  .section a:hover { text-decoration: underline; }
+
+  /* DATA TABLE */
+  .data-table {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin: 20px 0; width: 100%;
+  }
+  .data-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .data-row:last-child { border-bottom: none; }
+  .data-row.header { background: var(--bg3); }
+  .data-cell {
+    padding: 14px 16px; color: var(--muted2);
+  }
+  .data-row.header .data-cell { color: white; font-weight: 600; font-size: 13px; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 50px;
+    font-size: 12px; font-weight: 600;
+  }
+  .tag-no { background: rgba(255,107,53,0.12); color: var(--orange); }
+  .tag-yes { background: rgba(99,153,34,0.15); color: #7ec840; }
+
+  /* NO COLLECT */
+  .no-collect-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px; margin: 20px 0;
+  }
+  .no-collect-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--muted2);
+  }
+  .no-collect-item span:first-child { font-size: 18px; }
+
+  /* STEPS */
+  .steps { margin: 20px 0; }
+  .step-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+    font-size: 15px; color: var(--muted2);
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center; color: var(--muted);
+    font-size: 14px;
+  }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--orange); }
+
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .toc, .summary-box { padding: 20px; }
+    .data-row { grid-template-columns: 1fr 1fr; }
+    .data-row .data-cell:last-child { display: none; }
+  }
+</style>
 </head>
 <body>
 
-<h1>Privacy Policy</h1>
-<p class="updated">Last updated: March 15, 2026</p>
+<nav>
+  <a href="./index.html" class="nav-logo">
+    <div class="nav-logo-icon">⏱</div>
+    Intervalio
+  </a>
+  <a href="./index.html" class="nav-back">← Volver</a>
+</nav>
 
-<div class="highlight">
-    <strong>Intervalio</strong> is developed by Alberto Dimanuel. This Privacy Policy explains how we handle information when you use our app.
+<div class="hero">
+  <div class="hero-badge">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p>Last updated: March 15, 2026 · Alberto Dimanuel</p>
 </div>
 
-<h2>1. Information We Collect</h2>
-<p>Intervalio is a timer app. We do <strong>not</strong> collect, store, or transmit any personal data directly. However, we use Google AdMob to display advertisements, which may collect certain data as described below.</p>
+<div class="container">
 
-<h2>2. Advertising (Google AdMob)</h2>
-<p>We use Google AdMob to show ads in the app. AdMob may collect and use data to provide personalized or non-personalized ads, including:</p>
-<ul>
-    <li>Device identifiers (Advertising ID / IDFA)</li>
-    <li>IP address and approximate location</li>
-    <li>Device information (model, OS version)</li>
-    <li>App usage data and interaction with ads</li>
-</ul>
-<p>You can learn more about how Google uses data at: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></p>
-<p>To opt out of personalized advertising, you can adjust your device settings:</p>
-<ul>
-    <li><strong>iOS:</strong> Settings → Privacy & Security → Tracking → disable "Allow Apps to Request to Track"</li>
-</ul>
+  <!-- RESUMEN -->
+  <div class="summary-box">
+    <h3>🔒 The short version</h3>
+    <div class="summary-item"><span class="check">✓</span> Intervalio does not collect any personal data directly.</div>
+    <div class="summary-item"><span class="check">✓</span> All your timer settings are stored locally on your device only.</div>
+    <div class="summary-item"><span class="check">✓</span> Ads are served by Google AdMob, which may collect device identifiers.</div>
+    <div class="summary-item"><span class="check">✓</span> You can opt out of ad tracking at any time in iOS Settings.</div>
+    <div class="summary-item"><span class="check">✓</span> We never sell your data. Ever.</div>
+  </div>
 
-<h2>3. App Tracking Transparency (iOS)</h2>
-<p>In accordance with Apple's App Tracking Transparency framework, Intervalio will request your permission before accessing your device's Advertising Identifier (IDFA). You can change your decision at any time in your device Settings.</p>
+  <!-- TOC -->
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#s1">Information we collect</a></li>
+      <li><a href="#s2">Google AdMob advertising</a></li>
+      <li><a href="#s3">App Tracking Transparency</a></li>
+      <li><a href="#s4">Data we do NOT collect</a></li>
+      <li><a href="#s5">Local data storage</a></li>
+      <li><a href="#s6">Children's privacy</a></li>
+      <li><a href="#s7">GDPR — European users</a></li>
+      <li><a href="#s8">Changes to this policy</a></li>
+      <li><a href="#s9">Contact us</a></li>
+    </ol>
+  </div>
 
-<h2>4. Data We Do NOT Collect</h2>
-<p>Intervalio does <strong>not</strong> collect:</p>
-<ul>
-    <li>Names, email addresses, or contact information</li>
-    <li>Location data</li>
-    <li>Health or fitness data</li>
-    <li>Payment information</li>
-    <li>Photos, camera, or microphone data</li>
-</ul>
+  <!-- S1 -->
+  <div class="section" id="s1">
+    <div class="section-num">01</div>
+    <h2>Information we collect</h2>
+    <p>Intervalio is a timer app. We do <strong>not</strong> collect, store, or transmit any personal data directly. However, we use Google AdMob to display advertisements, which may collect certain data as described in section 2.</p>
+    <div class="data-table">
+      <div class="data-row header">
+        <div class="data-cell">Data type</div>
+        <div class="data-cell">Collected by us</div>
+        <div class="data-cell">Collected by AdMob</div>
+      </div>
+      <div class="data-row">
+        <div class="data-cell">Device identifier (IDFA)</div>
+        <div class="data-cell"><span class="tag tag-no">No</span></div>
+        <div class="data-cell"><span class="tag tag-yes">Yes</span></div>
+      </div>
+      <div class="data-row">
+        <div class="data-cell">App usage & ad interaction</div>
+        <div class="data-cell"><span class="tag tag-no">No</span></div>
+        <div class="data-cell"><span class="tag tag-yes">Yes</span></div>
+      </div>
+      <div class="data-row">
+        <div class="data-cell">Timer presets & settings</div>
+        <div class="data-cell">Local only</div>
+        <div class="data-cell"><span class="tag tag-no">No</span></div>
+      </div>
+      <div class="data-row">
+        <div class="data-cell">Personal data (name, email…)</div>
+        <div class="data-cell"><span class="tag tag-no">No</span></div>
+        <div class="data-cell"><span class="tag tag-no">No</span></div>
+      </div>
+    </div>
+  </div>
 
-<h2>5. Data Storage</h2>
-<p>All app data (your timer presets, preferences, and settings) is stored <strong>locally on your device only</strong> using iOS UserDefaults. This data never leaves your device and is never transmitted to our servers.</p>
+  <hr class="divider">
 
-<h2>6. Children's Privacy</h2>
-<p> We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us so we can delete it.</p>
+  <!-- S2 -->
+  <div class="section" id="s2">
+    <div class="section-num">02</div>
+    <h2>Google AdMob advertising</h2>
+    <p>We use Google AdMob to show ads in the free version of the app. AdMob may collect and use data to provide personalized or non-personalized ads, including:</p>
+    <div class="steps">
+      <div class="step-item"><span class="step-icon">📱</span>Device identifiers (Advertising ID / IDFA)</div>
+      <div class="step-item"><span class="step-icon">🌐</span>IP address and approximate location</div>
+      <div class="step-item"><span class="step-icon">⚙️</span>Device information (model, OS version)</div>
+      <div class="step-item"><span class="step-icon">📊</span>App usage data and interaction with ads</div>
+    </div>
+    <p>Learn more about how Google uses this data: <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></p>
+    <p>You can opt out of personalized advertising in <strong>iOS Settings → Privacy & Security → Tracking</strong> and disabling "Allow Apps to Request to Track".</p>
+    <p>You can also remove ads permanently with a one-time in-app purchase.</p>
+  </div>
 
-<h2>7. GDPR (European Users)</h2>
-<p>If you are located in the European Economic Area (EEA), you have certain rights regarding your personal data under the General Data Protection Regulation (GDPR), including the right to access, correct, or delete your data. Since we do not collect personal data directly, these rights primarily apply to data collected by Google AdMob. Please refer to Google's privacy policy for more information.</p>
+  <hr class="divider">
 
-<h2>8. Changes to This Policy</h2>
-<p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+  <!-- S3 -->
+  <div class="section" id="s3">
+    <div class="section-num">03</div>
+    <h2>App Tracking Transparency (iOS)</h2>
+    <p>In accordance with Apple's App Tracking Transparency (ATT) framework, Intervalio will request your permission before accessing your device's Advertising Identifier (IDFA). A prompt will appear the first time you open the app.</p>
+    <p>You can change your decision at any time in <strong>Settings → Privacy & Security → Tracking → Intervalio</strong>.</p>
+    <p>If you deny tracking, AdMob will still show ads, but they will not be personalized based on your activity across other apps and websites.</p>
+  </div>
 
-<h2>9. Contact</h2>
-<p>If you have any questions about this Privacy Policy, please contact us at:</p>
-<p><strong>Alberto Dimanuel</strong><br>
-Email: <a href="mailto:intervalio.ios@gmail.com">intervalio.ios@gmail.com</a></p>
+  <hr class="divider">
 
-<hr>
-<p style="color:#888; font-size:13px; text-align:center;">© 2026 Alberto Dimanuel · Intervalio</p>
+  <!-- S4 -->
+  <div class="section" id="s4">
+    <div class="section-num">04</div>
+    <h2>Data we do NOT collect</h2>
+    <p>Intervalio never collects any of the following:</p>
+    <div class="no-collect-grid">
+      <div class="no-collect-item"><span>👤</span> Name or email</div>
+      <div class="no-collect-item"><span>📍</span> Location data</div>
+      <div class="no-collect-item"><span>❤️</span> Health or fitness data</div>
+      <div class="no-collect-item"><span>💳</span> Payment information</div>
+      <div class="no-collect-item"><span>📷</span> Camera or photos</div>
+      <div class="no-collect-item"><span>🎙️</span> Microphone data</div>
+      <div class="no-collect-item"><span>📒</span> Contacts</div>
+      <div class="no-collect-item"><span>🔑</span> Passwords or credentials</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- S5 -->
+  <div class="section" id="s5">
+    <div class="section-num">05</div>
+    <h2>Local data storage</h2>
+    <p>All app data — your timer presets, custom intervals, preferences and settings — is stored <strong>locally on your device only</strong> using iOS UserDefaults and local storage.</p>
+    <p>This data never leaves your device and is never transmitted to our servers or any third party. Deleting the app will permanently remove all locally stored data.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- S6 -->
+  <div class="section" id="s6">
+    <div class="section-num">06</div>
+    <h2>Children's privacy</h2>
+    <p>Intervalio is rated 4+ and is suitable for all ages. We do not knowingly collect personal information from children under 13.</p>
+    <p>If you believe a child has provided personal information through our app, please contact us at <a href="mailto:intervalio.ios@gmail.com">intervalio.ios@gmail.com</a> and we will promptly delete it.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- S7 -->
+  <div class="section" id="s7">
+    <div class="section-num">07</div>
+    <h2>GDPR — European users</h2>
+    <p>If you are located in the European Economic Area (EEA), you have rights under the General Data Protection Regulation (GDPR), including the right to access, correct, or delete your data.</p>
+    <p>Since Intervalio does not collect personal data directly, these rights primarily apply to data collected by Google AdMob. Google's data practices and your rights are described at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</p>
+    <p>For any GDPR-related requests, contact us at <a href="mailto:intervalio.ios@gmail.com">intervalio.ios@gmail.com</a>.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- S8 -->
+  <div class="section" id="s8">
+    <div class="section-num">08</div>
+    <h2>Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page.</p>
+    <p>Continued use of the app after changes are posted constitutes your acceptance of the updated policy. We encourage you to review this page periodically.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- S9 -->
+  <div class="section" id="s9">
+    <div class="section-num">09</div>
+    <h2>Contact us</h2>
+    <p>Have questions about this Privacy Policy or want to suggest an improvement to the app? We read every message.</p>
+    <p>
+      <strong>Alberto Dimanuel</strong><br>
+      <a href="mailto:intervalio.ios@gmail.com">intervalio.ios@gmail.com</a>
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <p style="margin-bottom:12px;">
+    <a href="./index.html">Inicio</a>
+    &nbsp;·&nbsp;
+    <a href="./privacy-policy.html">Privacy Policy</a>
+    &nbsp;·&nbsp;
+    <a href="./support.html">Support</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:intervalio.ios@gmail.com">Contact</a>
+  </p>
+  <p>© 2026 Alberto Dimanuel · Intervalio</p>
+</footer>
 
 </body>
 </html>
